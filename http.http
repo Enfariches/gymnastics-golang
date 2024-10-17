@@ -1,0 +1,60 @@
+### TEST INIT GET
+GET http://127.0.0.1:8083/ HTTP/1.1
+
+
+### SEND CODE FOR AUTH
+
+curl -X POST http://localhost:8083/api/v1/email/send \
+-H "Content-Type: application/json" \
+-d '{
+    "email": "enderbro.main@yandex.ru"
+}'
+
+## EXAMPLE OF ANSWER
+# На почте: Код подтверждения для входа - 937975
+# {
+#   "id": "0f842212-a86f-456f-ac71-ca496e710c82",
+#   "email": "enderbro.main@yandex.ru"
+# }
+
+### SEND CODE FOR CONFIRM
+
+curl -X POST http://localhost:8083/api/v1/email/0f842212-a86f-456f-ac71-ca496e710c82/confirm
+-H "Content-Type: application/json" \
+-d '{
+    "code": 937975
+}'
+
+## EXAMPLE OF ANSWER
+# {
+#   "id": "b64b4142-f31c-4838-ba7e-036e14797a04",
+#   "created_at": "2024-09-02T15:31:35.2354447+05:00",
+#   "updated_at": "2024-09-02T15:31:35.2354447+05:00",
+#   "deleted_at": null,
+#   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJFbWFpbCI6ImVuZGVyYnJvLm1haW5AeWFuZGV4LnJ1IiwiU2Vzc2lvbklkIjoiYjY0YjQxNDItZjMxYy00ODM4LWJhN2UtMDM2ZTE0Nzk3YTA0IiwiZXhwIjoxNzI1MjkxMDk1fQ.KhP-7_gtHHh3KdxTrMXPxRGJluo-JmZ_7wij5lLEfts",
+#   "email": "enderbro.main@yandex.ru"
+# }
+
+### GET SESSION
+
+curl -X GET http://localhost:8083/api/v1/session -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJFbWFpbCI6ImVuZGVyYnJvLm1haW5AeWFuZGV4LnJ1IiwiU2Vzc2lvbklkIjoiYjY0YjQxNDItZjMxYy00ODM4LWJhN2UtMDM2ZTE0Nzk3YTA0IiwiZXhwIjoxNzI1MjkxMDk1fQ.KhP-7_gtHHh3KdxTrMXPxRGJluo-JmZ_7wij5lLEfts"
+
+
+### UPLOAD VIDEO
+
+POST /api/v1/videos HTTP/1.1
+Host: localhost:8083
+User-Agent: curl/8.2.1
+Accept: */*
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJFbWFpbCI6ImVuZGVyYnJvLm1haW5AeWFuZGV4LnJ1IiwiU2Vzc2lvbklkIjoiYjY0YjQxNDItZjMxYy00ODM4LWJhN2UtMDM2ZTE0Nzk3YTA0IiwiZXhwIjoxNzI1MjkxMDk1fQ.KhP-7_gtHHh3KdxTrMXPxRGJluo-JmZ_7wij5lLEfts
+Content-Type: multipart/form-data; boundary=------------------------3d5c7d72524e8457
+
+--------------------------3d5c7d72524e8457
+Content-Disposition: form-data; name="file"; filename="F:/work/hymnasika/rusgidro-gym-backend-go/eye_exercise.mp4"
+
+F:/work/hymnasika/rusgidro-gym-backend-go/eye_exercise.mp4
+--------------------------3d5c7d72524e8457--
+
+
+
+
