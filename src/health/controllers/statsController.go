@@ -42,7 +42,7 @@ func AddStatHandler(w http.ResponseWriter, r *http.Request) {
 
 	userId := models.GetOrCreateUsernameId(req.Name) // Как он может быть 0?
 	if userId == 0 {
-		models.AddStat(uint(id), req.Name, req.Type) // Не добавится
+		models.AddStat(uint(id), req.Name, req.Type) // В Stat никогда не добавится
 	} else {
 		models.AddPublicStat(uint(id), userId, req.Type)
 	}
@@ -67,7 +67,7 @@ func ListStatsHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func ListStatsDetailsHandler(w http.ResponseWriter, r *http.Request) {
-	model := models.Db.
+	model := models.Db. //у таблицы users нет методов создания записей
 		Select("users.user_id, users.organization, users.\"position\", users.department, videos.\"name\", count(*), public_stats.\"type\"").
 		Joins("inner join users on users.user_id = public_stats.user_id").
 		Joins("inner join videos on videos.id = public_stats.video_id").

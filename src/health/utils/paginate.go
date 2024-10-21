@@ -18,6 +18,9 @@ import (
 	"strings"
 )
 
+/*
+	Не используемый модуль
+*/
 type ResponseContext interface {
 	Cache(string) ResponseContext
 	Fields([]string) ResponseContext

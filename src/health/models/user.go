@@ -10,3 +10,5 @@ type User struct {
 	Position     string
 	UserId       uint
 }
+
+//Нет методов создания и обновления таблицы Users

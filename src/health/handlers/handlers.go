@@ -8,6 +8,10 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+/*
+Полностью повтораются методы из Controllers. Не используемый модуль
+*/
+
 func GetVideosListHandler(c *gin.Context) {
 	videos := models.GetVideosList()
 	c.JSON(200, videos)

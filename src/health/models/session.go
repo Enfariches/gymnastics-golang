@@ -41,7 +41,7 @@ func GetSession(token string) *Session {
 	return session
 }
 
-func DeleteSessionByToken(token string) {
+func DeleteSessionByToken(token string) { //Не использутеся
 	Db.Table("sessions").Where("token = ?", token).Unscoped().Delete(&Session{})
 }
 

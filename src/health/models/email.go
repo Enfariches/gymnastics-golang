@@ -44,6 +44,6 @@ func UpdateEmailConfirm(emailConfirm *EmailConfirm, code uint) *EmailConfirm {
 	return emailConfirm
 }
 
-func DeleteEmailConfirm(id string) {
-	Db.Table("email_confirms").Where("email = ?", id).Unscoped().Delete(&Session{})
+func DeleteEmailConfirm(email string) {
+	Db.Table("email_confirms").Where("email = ?", email).Unscoped().Delete(&Session{})
 }

@@ -36,7 +36,7 @@ var SendConfirmationCode = func(w http.ResponseWriter, r *http.Request) {
 		u.Respond(w, u.Message(u.InvalidBody, "Invalid request body"))
 		return
 	}
-	if !models.HasAdmin(req.Email) {
+	if !models.HasAdmin(req.Email) { //Нужно быть админом, чтобы получить код
 		w.WriteHeader(http.StatusBadRequest)
 		u.Respond(w, u.Message(u.WrongEmail, "This email address is not on the allowed list"))
 		return

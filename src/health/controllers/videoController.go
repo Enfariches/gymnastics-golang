@@ -17,8 +17,6 @@ func GetVideosListHandler(w http.ResponseWriter, r *http.Request) {
 	u.Respond(w, data)
 }
 
-func GetScheduleHandler(w http.ResponseWriter, r *http.Request) {}
-
 func UploadVideo(w http.ResponseWriter, r *http.Request) {
 	err := r.ParseMultipartForm(100 << 20)
 	if err != nil {

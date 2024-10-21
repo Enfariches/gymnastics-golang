@@ -11,7 +11,7 @@ import (
 )
 
 func ListScheduleHandler(w http.ResponseWriter, r *http.Request) {
-	dayStr := mux.Vars(r)["day"]
+	dayStr := mux.Vars(r)["day"] //Берется из значения в URL
 	day, err := strconv.Atoi(dayStr)
 	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
@@ -43,7 +43,7 @@ func UpdateScheduleHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	schedule.Update()
-	u.Respond(w, u.Message(u.Ok, "Video successfully update"))
+	u.Respond(w, u.Message(u.Ok, "Schedule successfully update"))
 }
 
 func DeleteScheduleHandler(w http.ResponseWriter, r *http.Request) {
