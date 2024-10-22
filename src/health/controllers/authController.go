@@ -14,6 +14,20 @@ import (
 	"github.com/gorilla/mux"
 )
 
+var CreateAdmin = func(w http.ResponseWriter, r *http.Request) {
+	var req struct {
+		Email string
+	}
+	err := json.NewDecoder(r.Body).Decode(&req)
+	if err != nil {
+		w.WriteHeader(http.StatusBadRequest)
+		u.Respond(w, u.Message(u.InvalidBody, "Invalid request body"))
+		return
+	}
+	admin := models.CreateAdmin(req.Email)
+	u.Respond(w, admin)
+}
+
 var GetSession = func(w http.ResponseWriter, r *http.Request) {
 	session := r.Context().Value("session").(*models.Session)
 

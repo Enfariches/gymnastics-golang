@@ -37,7 +37,7 @@ func StartApi() {
 	modRouter.HandleFunc("/videos/{id}", controllers.UpdateVideoHandler).Methods("PUT")
 	modRouter.HandleFunc("/videos/{id}", controllers.ToggleVideoHandler).Methods("GET")
 	modRouter.HandleFunc("/videos", controllers.UploadVideo).Methods("POST")
-
+	routerV1.HandleFunc("/admin", controllers.CreateAdmin).Methods("POST") // Удалить перед продом
 	routerV1.HandleFunc("/email/send", controllers.SendConfirmationCode).Methods("POST")
 	routerV1.HandleFunc("/email/{id}/confirm", controllers.ConfirmEmail).Methods("POST")
 
@@ -46,7 +46,7 @@ func StartApi() {
 	routerV1.HandleFunc("/stats", controllers.AddStatHandler).Methods("POST")
 	routerV1.HandleFunc("/stats", controllers.ListStatsHandler).Methods("GET")
 	routerV1.HandleFunc("/stats/details", controllers.ListStatsDetailsHandler).Methods("GET")
-	
+
 	routerV1.HandleFunc("/videos", controllers.GetVideosListHandler).Methods("GET")
 
 	authRouter.Use(JwtAuthentication)

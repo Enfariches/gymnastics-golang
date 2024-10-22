@@ -1,0 +1,25 @@
+
+services:
+  db:
+    container_name: db
+    restart: always
+    image: postgres
+    volumes:
+      - .:/docker-entrypoint-initdb.d
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_DB: health
+      POSTGRES_PASSWORD: root
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+    ports:
+      - 5436:5432
+
+  health:
+    build: ./
+    command: health api
+    ports:
+      - 8083:8083
+    depends_on:
+      - db
+    env_file: 
+      - .env

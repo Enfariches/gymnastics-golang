@@ -6,6 +6,12 @@ type Admin struct {
 	Email string `gorm:"primary_key"`
 }
 
+func CreateAdmin(email string) *Admin {
+	admin := &Admin{Email: email}
+	Db.Create(admin)
+	return admin
+}
+
 func HasAdmin(email string) bool {
 	var count int64
 	err := Db.Table("admins").
